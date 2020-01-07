@@ -782,8 +782,16 @@ export default {
   .winddirection .working{
     margin-top: 10px;
   }
+  .temperature{
+    display: flex;
+  }
   .temperature img{
-    float: left;
+    height: 270px;
+    margin-top: 70px;
+  }
+  .temperature div{
+    float: right;
+    flex: 2;
   }
   .humidityTag{
     position: absolute;
