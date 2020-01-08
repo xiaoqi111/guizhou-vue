@@ -48,7 +48,24 @@ export default {
       loginTag:true,
     }
   },
+  created(){
+    // 检查浏览器缓存中是否有账户信息，若有则请求校验
+    if(window.localStorage.username){
+      this.checkName()
+    }
+  },
   methods: {
+    async checkName(){
+      const res = await this.$http.post('/logined',{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+      const data = res.data
+      // 请求成功则跳页
+      if (data.status === '200') {
+        this.$router.push({
+          name: "Weather"
+        });
+      }
+    },
+    //登录按钮
     async onSubmit () {
       // console.log(this.form.username);
       if (this.form.username=='' || this.form.password =='') {
@@ -62,7 +79,6 @@ export default {
         const res = await this.$http.post('/signIn', form, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
         // console.log('登录页面跳转')
         const data = res.data
-
         if (data.status === '200') {
           saveUserInfo(data.msg)
 
