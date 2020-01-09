@@ -2,7 +2,7 @@
   <div class="countentWorpWat">
     <div class="divActive divActiveRight divWeater">
       <div class="caop">
-        <div v-for="sensorItem in sensor" :class="setClass(sensorItem.partition)">
+        <div v-for="sensorItem in sensor" :key="sensorItem.index" :class="setClass(sensorItem.partition)">
           <p><span>{{sensorItem.partition}}</span>区水阀状态</p>
             <div class="wdNum">
               <el-switch
@@ -19,7 +19,9 @@
       </div>
       <div class="hydrovalve">
         <ul class="waterValue">
-          <li v-for="item3 in column" @click="columnMsg(item3.name,item3.key)"><img src="../assets/icon/iconList.png" alt="">{{item3.name}}</li>
+          <li v-for="item3 in column" :key="item3.index" @click="columnMsg(item3.name,item3.key)">
+            <img src="../assets/icon/iconList.png" alt="">{{item3.name}}
+          </li>
         </ul>
       </div>
     </div>

@@ -112,7 +112,7 @@
       <div class="weatherMonitor">
         <div class="divActive">
 
-            <div class="MonitorTab" v-for="(item,index) in sysType">
+            <div class="MonitorTab" v-for="(item,index) in sysType" :key="index">
               <router-link :to="{path:item.route}">
                 <img class="navTagActive" :src="getImgUrl(item.url)" alt="">
                 <img class="navTag" :src="getImgUrl2(item.pitchUrl)" alt="">

@@ -1,7 +1,7 @@
 <template>
   <div class="countentWorp">
     <div class="divActiveLeft">
-      <div class="divActive divSex" v-for="item in items">
+      <div class="divActive divSex" v-for="item in items" :key="item.index">
         <p class="borderDiv">
           实时{{item.name}}
           <img :src="getImgUrl(item.url)" alt="">
@@ -15,7 +15,7 @@
     </div>
     <div class="divActiveRight">
       <div class="lawn">
-        <div v-for="item2 in items2" :class="setClass(item2.partition)">
+        <div v-for="item2 in items2" :class="setClass(item2.partition)" :key="item2.index">
           <p><span>{{item2.partition}}</span>区{{columnPage}}</p>
           <p class="wdNum"><span>{{item2.field}}</span>℃</p>
         </div>
@@ -25,7 +25,7 @@
           <el-tabs v-model="activeName" type="card">
             <el-tab-pane label="土壤监测" name="first">
               <ul class="tabsSoil">
-                <li v-for="(item3,index) in column" :class = "isactive == index ? 'addclass':''" @click="columnMsg(item3.name,item3.key,index)">
+                <li v-for="(item3,index) in column" :key="index" :class = "isactive == index ? 'addclass':''" @click="columnMsg(item3.name,item3.key,index)">
                   <img src="../assets/icon/iconList.png" alt="">{{item3.name}}
                 </li>
               </ul>

@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="divActive divSoliproperty">
-      <div v-for="(secondeItem,index) in seconde" class="propertyList" @mouseover="enter(index)" @mouseout="out(index)">
+      <div v-for="(secondeItem,index) in seconde" :key="index" class="propertyList" @mouseover="enter(index)" @mouseout="out(index)">
         <p class="propertyActive" :class="isActive == index ?'active':''"></p>
         <p class="propertyName" :class="classActive == index ?'classactive':''">
           {{secondeItem.attachments.current}}&nbsp;{{secondeItem.unit}}
@@ -87,7 +87,7 @@
           <el-table :data="tableData3" style="width: 100%">
             <el-table-column
               v-for="(col,index) in cols"
-              :prop="col.prop" :label="col.label" :key="col.index">
+              :prop="col.prop" :label="col.label" :key="index">
             </el-table-column>
           </el-table>
         </el-tab-pane>
