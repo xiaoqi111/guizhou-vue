@@ -6,11 +6,11 @@
         <div class="box">
       		<form :model="form" autocomplete="off" v-show="flag">
             <p>
-              <img src="../assets/user.png" alt="">
+              <img src="../assets/icon/user.png" alt="">
               <input type="text" v-model="form.username" @keyup="show()" @keyup.enter="onSubmit" placeholder="请输入用户名" name="username" class="name" required="required" />
             </p>
             <p>
-              <img src="../assets/pass.png" alt="">
+              <img src="../assets/icon/pass.png" alt="">
               <input type="text" v-model="form.password" @keyup="show()" @keyup.enter="onSubmit" onfocus="this.type='password'" autocomplete="off" placeholder="请输入密码" name="password" class="password" required="required" />
             </p>
             <p>
@@ -142,7 +142,7 @@ html,body{
 }
 .body{
   height: 100%;
-  background-image: url('../assets/timg.jpg')!important;
+  background-image: url('../assets/icon/timg.jpg')!important;
   background-size: 100% 100%;
 }
 .bodyBox{
@@ -158,7 +158,7 @@ html,body{
   transform: translateY(-50%);
   left: 50%;
   transform: translateX(-50%);
-  background-image: url('../assets/border.png');
+  background-image: url('../assets/icon/border.png');
 }
 .box{
     width: 472px;
@@ -171,7 +171,7 @@ html,body{
     color: #fff;
     /* background-color: rgba(0,0,0,.25); */
     /* background-color: rgba(255,255,255,.15); */
-    background-image: url('../assets/login.png');
+    background-image: url('../assets/icon/login.png');
     /* padding: 45px 72px; */
     background-repeat: no-repeat;
     /* border-radius: 15px; */
@@ -217,7 +217,7 @@ html,body{
   width:338px;
   height:46px;
   background:transparent;
-  background-image: url('../assets/inputBg.png');
+  background-image: url('../assets/icon/inputBg.png');
   background-size: 100% 100%;
   opacity: 0.9;
   box-sizing: border-box;
@@ -252,7 +252,7 @@ input {
 .login_button {
     width: 100%;
     height: 47px;
-    background-image: url('../assets/innerlogin.png');
+    background-image: url('../assets/icon/innerlogin.png');
     background-size: 100% 100%;
     background-color: transparent;
     border: none;
@@ -265,7 +265,7 @@ input {
 .wraplogin{
   width: 100%;
   height: 47px;
-  background-image: url('../assets/wraplogin.png');
+  background-image: url('../assets/icon/wraplogin.png');
   background-size: 100% 100%;
   background-color: transparent;
   border: none;

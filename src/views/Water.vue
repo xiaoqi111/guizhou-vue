@@ -19,7 +19,7 @@
       </div>
       <div class="hydrovalve">
         <ul class="waterValue">
-          <li v-for="item3 in column" @click="columnMsg(item3.name,item3.key)"><img src="../assets/iconList.png" alt="">{{item3.name}}</li>
+          <li v-for="item3 in column" @click="columnMsg(item3.name,item3.key)"><img src="../assets/icon/iconList.png" alt="">{{item3.name}}</li>
         </ul>
       </div>
     </div>
@@ -313,7 +313,7 @@ export default {
   .divActiveRight .caop{
     width: 910px;
     height: 256px;
-    background-image: url("../assets/b447b084c2bda20170418e2c11d6744.png");
+    background-image: url("../assets/icon/b447b084c2bda20170418e2c11d6744.png");
     margin-top: 45px;
     float: left;
     margin-left: 12%;
@@ -345,7 +345,7 @@ export default {
   .caop .alertPop{
     width: 122px;
     height: 78px;
-    background-image: url("../assets/alert.png");
+    background-image: url("../assets/icon/alert.png");
     padding-top: 23px;
     float: left;
   }

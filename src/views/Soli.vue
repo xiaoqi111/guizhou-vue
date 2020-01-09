@@ -1,9 +1,9 @@
 <template>
-  <div class="countentWorpWea">
+  <div class="countentWorpSol">
     <div class="">
       <el-form :model="formtop"  ref="form" label-width="10%" class="demo-ruleForm formTop">
         <el-form-item prop="nodeId">
-            <el-select v-model="form.nodeId" @change="change2">
+            <el-select v-model="form.nodeId" @change="change1">
                 <el-option v-for="item2 in items2" :key="item2.id" :label="item2.name" :value="item2.id"></el-option>
             </el-select>
         </el-form-item>
@@ -15,54 +15,41 @@
       </el-form>
     </div>
     <div class="divSoliWrap">
-      <div class="divWeather">
-        <div class="divActive solit">
-          <p class="soliSelect soliwd">
-            空气温度
-          </p>
-          <div class="soliStatus">
-            <div class="wdBox">
-              <img :src="wdf20" alt="">
-            </div>
-            <p class="working">{{solit}}℃</p>
-          </div>
-        </div>
-        <div class="divActive solit">
-          <p class="soliSelect soliwd">
-            湿度
-          </p>
-          <div class="soliStatus sdStatus">
-            <span class="humidityTag">{{humidity}}%</span>
-            <img src="../assets/6ac5d46271219c6ea75f27e49c5d6ae.png" alt="">
-          </div>
+      <div class="divActive divSoli divSolifelx">
+        <p class="soliSelect">
+          <!-- <el-form :model="formSoli"  ref="formSoli" label-width="110px" class="demo-ruleForm">
+            <el-form-item label="请选择传感设备" prop="device">
+                <el-select v-model="formSoli.device" @change="change2">
+                  <el-option v-for="itemNode in nodes" :key="itemNode.id" :label="itemNode.id" :value="itemNode.id"></el-option>
+                </el-select>
+            </el-form-item>
+          </el-form> -->
+        </p>
+        <div class="soliStatus">
+          <img src="../assets/icon/status.png" alt="">
+          <p class="sbStatus">设备状态</p>
+          <p class="working">{{working == 1 ?'未连接':'已连接'}}</p>
         </div>
       </div>
-      <div class="divActive divSoli">
+      <div class="divActive divSoli solit">
         <p class="soliSelect soliwd">
-          20分钟实时监测数据
+          土壤温度
         </p>
-        <div class="temperature">
-          <img src="../assets/map.png" alt="">
-          <div class="">
-            <p class="weatherw">{{temperature}}℃</p>
-            <p class="working">温度</p>
-            <p class="weatherw">{{humidity}}%</p>
-            <p class="working">湿度</p>
-            <p class="weatherw">{{rainfall}}mm/hr</p>
-            <p class="working">雨量</p>
+        <div class="soliStatus">
+          <div class="wdBox">
+            <img :src="wdf20" alt="">
           </div>
+          <p class="working">{{solit}}℃</p>
         </div>
       </div>
-      <div class="divActive divSoli divSoliright">
+      <div class="divActive divSoli divSoliright solit">
         <p class="soliSelect soliwd">
-          当前风向
+          土壤含水率
         </p>
-        <div class="winddirection">
-          <img src="../assets/windAge.png" alt="">
-          <p class="weatherwtop">{{winddirection}}</p>
-          <p class="working">风向</p>
-          <p class="weatherw">{{windsped}}m/s</p>
-          <p class="working">风速</p>
+        <div class="soliStatus soliWorking">
+          <!-- <img src="../assets/icon/status.png" alt=""> -->
+          <div id="pie" class="pie"></div>
+          <p class="working">{{soliw}}%</p>
         </div>
       </div>
     </div>
@@ -95,6 +82,16 @@
       <div class="shujuLog divshjuju">
         <span class="shujuHeader">数据展示</span>
         <el-form :model="form"  ref="form" label-width="10%" class="demo-ruleForm">
+          <!-- <el-form-item prop="nodeId">
+              <el-select v-model="form.nodeId" @change="change1">
+                  <el-option v-for="item2 in items2" :key="item2.id" :label="item2.name" :value="item2.id"></el-option>
+              </el-select>
+          </el-form-item>
+          <el-form-item prop="nameId">
+              <el-select v-model="form.nameId" @change="change">
+                  <el-option v-for="item in items" :key="item.id" :label="item.id" :value="item.id"></el-option>
+              </el-select>
+          </el-form-item> -->
           <el-form-item prop="gatewayId">
               <el-select v-model="form.gatewayId" @change="change3">
                   <el-option v-for="item3 in items3" :key="item3.key" :label="item3.name" :value="item3.key"></el-option>
@@ -129,68 +126,69 @@
 import $ from 'jquery'
 import Qs from 'qs'
 
-import wdf20 from '@/assets/-20.png'
-import wdf18 from '@/assets/-18.png'
-import wdf16 from '@/assets/-16.png'
-import wdf14 from '@/assets/-14.png'
-import wdf12 from '@/assets/-12.png'
-import wdf10 from '@/assets/-10.png'
-import wdf8 from '@/assets/-8.png'
-import wdf6 from '@/assets/-6.png'
-import wdf4 from '@/assets/-4.png'
-import wdf2 from '@/assets/-2.png'
+import wdf20 from '@/assets/icon/-20.png'
+import wdf18 from '@/assets/icon/-18.png'
+import wdf16 from '@/assets/icon/-16.png'
+import wdf14 from '@/assets/icon/-14.png'
+import wdf12 from '@/assets/icon/-12.png'
+import wdf10 from '@/assets/icon/-10.png'
+import wdf8 from '@/assets/icon/-8.png'
+import wdf6 from '@/assets/icon/-6.png'
+import wdf4 from '@/assets/icon/-4.png'
+import wdf2 from '@/assets/icon/-2.png'
 
-import wd0 from '@/assets/0.png'
-import wd2 from '@/assets/2.png'
-import wd4 from '@/assets/4.png'
-import wd6 from '@/assets/6.png'
-import wd8 from '@/assets/8.png'
-import wd10 from '@/assets/10.png'
-import wd12 from '@/assets/12.png'
-import wd14 from '@/assets/14.png'
-import wd16 from '@/assets/16.png'
-import wd18 from '@/assets/18.png'
-import wd20 from '@/assets/20.png'
-import wd22 from '@/assets/22.png'
-import wd24 from '@/assets/24.png'
-import wd26 from '@/assets/26.png'
-import wd28 from '@/assets/28.png'
-import wd30 from '@/assets/30.png'
-import wd32 from '@/assets/32.png'
-import wd34 from '@/assets/34.png'
-import wd36 from '@/assets/36.png'
-import wd38 from '@/assets/38.png'
-import wd40 from '@/assets/40.png'
-import wd42 from '@/assets/42.png'
-import wd44 from '@/assets/44.png'
-import wd46 from '@/assets/46.png'
+import wd0 from '@/assets/icon/0.png'
+import wd2 from '@/assets/icon/2.png'
+import wd4 from '@/assets/icon/4.png'
+import wd6 from '@/assets/icon/6.png'
+import wd8 from '@/assets/icon/8.png'
+import wd10 from '@/assets/icon/10.png'
+import wd12 from '@/assets/icon/12.png'
+import wd14 from '@/assets/icon/14.png'
+import wd16 from '@/assets/icon/16.png'
+import wd18 from '@/assets/icon/18.png'
+import wd20 from '@/assets/icon/20.png'
+import wd22 from '@/assets/icon/22.png'
+import wd24 from '@/assets/icon/24.png'
+import wd26 from '@/assets/icon/26.png'
+import wd28 from '@/assets/icon/28.png'
+import wd30 from '@/assets/icon/30.png'
+import wd32 from '@/assets/icon/32.png'
+import wd34 from '@/assets/icon/34.png'
+import wd36 from '@/assets/icon/36.png'
+import wd38 from '@/assets/icon/38.png'
+import wd40 from '@/assets/icon/40.png'
+import wd42 from '@/assets/icon/42.png'
+import wd44 from '@/assets/icon/44.png'
+import wd46 from '@/assets/icon/46.png'
 
 export default {
   data () {
     return {
       currentPage:1,
+      tableData: [],
       total:1,
       pageSize:5,
       Id:'',
       pId:'',
-      gatewayId:'',
       gong:0,
       typea:'',
-      form:{gatewayId:''},
-      formtop:{nodeId:'',nameId:''},
+      form:{nodeId:'',gatewayId:'',nameId:''},
+      // formSoli:{device:''},
       items:[],
+      nodes:[],
       items2:[],
       items3:[
-        {name : "空气温度" , key : "temperature"},
-        {name : "空气湿度" , key : "humidity"},
-        {name : "压力" , key : "pressure"},
-        {name : "风速" , key : "windsped"},
-        {name : "风向" , key : "Winddirection"},
-        {name : "降雨量" , key : "Rainfall"},
-        {name : "日光照" , key : "dailyRadiation"},
-        {name : "辐射功率" , key : "radiationPower"},
-        {name : "uv辐射" , key : "uv"},
+        {name : "土壤温度" , key : "temperature"},
+        {name : "土壤湿度" , key : "humidity"},
+        {name : "土壤电导率" , key : "Conductivity"},
+        {name : "土壤盐度" , key : "salinity"},
+        {name : "总溶解固体" , key : "tds"},
+        {name : "介电常数" , key : "epsilon"},
       ],
+      seconde:[],
+      isActive:-1,
+      classActive:-1,
       pickerOptions2: {
           shortcuts: [{
             text: '最近一周',
@@ -217,35 +215,29 @@ export default {
               picker.$emit('pick', [start, end]);
             }
           }]
-      },
-      value7: '',
+        },
+      projectId:2,
+      sysType:2,
+      nodeType:2,
       // gatewayId:'ed7b9030-dca9-45b1-b6dd-39c86f2da897',
-      nodeType:1,
-      sysType:1,
       solit:'',
-      winddirection:'',
-      windsped:'',
-      temperature:'',
-      humidity:'',
-      rainfall:'',
-      seconde:[],
-      isActive:-1,
-      classActive:-1,
+      soliw:'',
       st:'',
       et:'',
       timeAge:[],
       dataAge:[],
-      columnNameIndex:'空气温度',
+      columnNameIndex:'土壤温度',
       wdf20:wd0,
-      projectId:2,
       startLength:'',
       tableData3:[],
       activeName2: 'first',
+      dateVals:'',
       columName:[],
       columa:[],
       bodyData:[],
       cols:[],
-      dateVals:'',
+      formtop:{nodeId:'',nameId:''},
+      working:'',
     }
   },
   created: function () {
@@ -253,12 +245,7 @@ export default {
     // this.defaultDate();
   },
   mounted: function () {
-    // this.weatherTemperature();
-  },
-  computed:{
-    // imgUrl:function() {
-    //   return require("../assets/" + this.solit  + ".png");
-    // },
+    // this.soilTemperature();
   },
   methods:{
     // defaultDate(){
@@ -278,7 +265,7 @@ export default {
     //     // console.log(beg);
     // },
     enter: function(index){
-      this.isActive = index;
+      this.isActive = index
       this.classActive = index;
     },
     out: function (index) {
@@ -288,20 +275,21 @@ export default {
     async credNode () {
       const res = await this.$http.get(`/data/gateway/${this.projectId}/${this.nodeType}`,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       const data = res.data
-      // console.log(data.data);
       this.items2 = data.data;
       this.form.nodeId = this.items2[0].id;
       this.node(this.form.nodeId)
     },
-    async node (nodeId) {
+    async node (nodeId,nameId) {
       const res = await this.$http.get(`/data/node/${nodeId}/${this.nodeType}`,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       const data = res.data
-      // console.log(data);
+      // console.log(data.data);
+      this.nodes = data.data;
       this.items = data.data;
-      this.form.gatewayId = this.items3[0].key;
+      // this.formSoli.device = data.data[0].id;
       this.form.nameId = data.data[0].id;
-      this.sysTypeAge(this.form.nameId,nodeId);
-      this.weatherAge(nodeId,data.data[0].id,this.items3[0].key,this.columnNameIndex)
+      this.form.gatewayId = this.items3[0].key;
+      this.homePage(this.form.nameId,nodeId);
+      this.sysTypeAge(nodeId,this.form.nameId,this.items3[0].key,this.columnNameIndex);
       this.weatherTable(nodeId,this.form.nameId);
     },
     async weatherTable (nodeId,gatewayId) {
@@ -309,7 +297,7 @@ export default {
         st: this.st,
         et: this.et
       })
-      const res = await this.$http.post(`/excel/weather/${nodeId}/${gatewayId}`, json ,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+      const res = await this.$http.post(`/excel/soil/${nodeId}/${gatewayId}`, json ,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       const data = res.data
       console.log(data.data.body);
       this.columName = data.data.name;
@@ -329,17 +317,20 @@ export default {
           const filterVal = this.columa;
           const list = this.bodyData;
           const data = this.formatJson(filterVal, list);
-          export_json_to_excel(tHeader, data, "气象数据");
+          export_json_to_excel(tHeader, data, "土壤数据");
       })
     },
     formatJson(filterVal, jsonData) {
         return jsonData.map(v => filterVal.map(j => v[j]))
     },
-    async sysTypeAge (nodeId,id) {
+    async homePage (nodeId,id) {
       const res = await this.$http.post(`/data/sysType/${this.sysType}/${id}/${nodeId}`,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       const data = res.data
-      // console.log(data.data);
+      this.seconde = data.data.seconde;
       this.solit = data.data.first.temperature;
+      this.working = data.data.first.isDamage;
+
+      // console.log(data.data.first.temperature);
       if (this.solit > 44 && this.solit < 46) {
         this.wdf20 = wd46;
       } else if (this.solit > 42 && this.solit < 44) {
@@ -410,14 +401,71 @@ export default {
         this.wdf20 = wdf20;
       }
 
-      this.winddirection = data.data.first.winddirection;
-      this.windsped = data.data.first.windsped;
-      this.temperature = data.data.first.temperature;
-      this.humidity = data.data.first.humidity;
-      this.rainfall = data.data.first.rainfall;
-      this.seconde = data.data.seconde;
+      this.soliw = data.data.first.humidity;
+
+      var dom = document.getElementById('pie');
+      var myChart = this.echarts.init(dom)
+              var option = {
+                  grid: {
+                      top: 5,
+                      bottom: 5,
+                  },
+                  color: ['#4394FD', 'rgba(128, 128, 128, 0.1)'],
+                  series: [{
+                      name: 'valueOfMarket',
+                      type: 'pie',
+                      center: ['50%', '50%'], // 饼图的圆心坐标
+                      radius: ['50%', '70%'],
+                      avoidLabelOverlap: false,
+                      hoverAnimation: true,
+                      label: { //  饼图图形上的文本标签
+                          normal: { // normal 是图形在默认状态下的样式
+                              show: false,
+                              textStyle: {
+                                  color: '#fff'  // 改变标示文字的颜色
+                              }
+                          },
+                      },
+                      itemStyle:{
+                              show:false,
+                              borderWidth:1,
+                          },
+                      data: [
+                          {
+                              value: this.soliw,
+                              name: '%',
+                              label: {
+                                  normal: {
+                                      show: true
+                                  }
+                              }
+                          },
+                          {
+                              value: 100 - this.soliw,
+                              name: '',
+                              label: {
+                                  normal: {
+                                  show: false
+                                  }
+                              }
+                          }
+                      ]
+                  }]
+                }
+              myChart.setOption(option);
+
+      // if (data.status === '200') {
+      //   this.items = data.data.weather;
+      //   this.items2 = data.data.soil;
+      // } else if (data.status === '500') {
+      //   // 如果登录出现500的错误，弹出弹窗提示错误信息
+      //   this.$message({
+      //     message: data.msg,
+      //     type: 'error'
+      //   })
+      // }
     },
-    async weatherAge (pId,nodeId,column,columnName) {
+    async sysTypeAge (pId,nodeId,column,columnName) {
       var json = Qs.stringify({
         st: this.st,
         et: this.et
@@ -435,18 +483,18 @@ export default {
     startflow (val) {
       this.st = val[0];
       this.et = val[1];
-      this.weatherAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
+      this.sysTypeAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
       this.weatherTable(this.form.nodeId,this.form.nameId);
     },
     getImgUrl(icon){
        return "https://krjrobot.cn/krjrobot/img/syspage/"+icon
     },
     async soilTemperature (timeAge,dataAge,columnName) {
-        if (dataAge.length > 40) {
-          this.startLength = 100 - (4000/dataAge.length)
-        } else {
-          this.startLength = 0;
-        }
+      if (dataAge.length > 40) {
+        this.startLength = 100 - (4000/dataAge.length)
+      } else {
+        this.startLength = 0;
+      }
         var dom = document.getElementById('main')
         var myChart = this.echarts.init(dom)
         var colors = ['#4299FE'];
@@ -483,7 +531,7 @@ export default {
             xAxis: {
                 type: 'category',
                 axisLabel:{
-                  interval:5,
+                  interval:0,
                   rotate:38,
                   margin: 20,
                   textStyle: {
@@ -542,14 +590,14 @@ export default {
             myChart.resize();
         }
     },
-    change:function(){
-      this.weatherAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
+    change:function(val){
+      this.sysTypeAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
       this.weatherTable(this.form.nodeId,this.form.nameId)
-      this.sysTypeAge(this.form.nameId,this.form.nodeId);
+      this.homePage(val,this.form.nodeId);
+      console.log(val);
     },
-    change2:function(){
+    change1:function(){
       this.node(this.form.nodeId,)
-      // this.weatherAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
     },
     change3:function(key){
       let obj = {};
@@ -557,22 +605,85 @@ export default {
           return item.key === key;
       });
       this.columnNameIndex = obj.name;
-      this.weatherAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
+      // console.log(obj.name);
+      this.sysTypeAge(this.form.nodeId,this.form.nameId,this.form.gatewayId,this.columnNameIndex);
     },
+    // change2:function(val){
+    //   this.homePage(val,this.form.nodeId);
+    // },
+    // async derive () {
+    //   var i = myChart.getDataURL({
+    // 		type:'png',
+    // 		backgroundColor:'white'
+    // 		// 导出的图片分辨率比例，默认为 1。
+    // 		//pixelRatio: number,
+    // 	});
+    // 	$(this).attr("href",i);
+    // 	$(this).attr("download","test.png");
+    // },
   }
 }
 </script>
 <style scoped>
-  .countentWorpWea .divActiveRight{
+  .countentWorpSol .divActiveRight{
     width: 100%;
     float: right;
-    height: 500px;
+    height: 498px;
     padding: 15px 20px 19px 20px;
     box-sizing: border-box;
-    margin-bottom: 30px;
+    margin-bottom: 75px;
     position: relative;
   }
-  .countentWorpWea .divActiveRight .shujuLog{
+  .divSoliWrap{
+    margin-bottom: 30px;
+    display:-webkit-flex;
+    display:flex;
+  }
+  .divSoliproperty{
+    height: 235px;
+    padding: 30px 0 0 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    display:-webkit-flex;
+    display:flex;
+  }
+  .divSoliWrap .divSoli{
+    float: left;
+    height: 239px;
+    padding: 11px 20px 0 20px;
+    text-align: center;
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  .divSoliWrap .divSolifelx{
+    flex-grow: 1;
+  }
+  .divSoliWrap .divSoliright{
+    margin-right: 0;
+  }
+  .soliStatus{
+    width: 210px;
+    margin: 0 auto;
+  }
+  .soliWorking{
+    width: 250px;
+  }
+  .soliStatus img{
+    margin: 50px 60px 0 0;
+    float: left;
+  }
+  .soliStatus p{
+    float: left;
+  }
+  .soliStatus .sbStatus{
+    margin-top: 48px;
+  }
+  .soliStatus .working{
+    margin-top: 22px;
+    color: #333333;
+    font-size: 24px;
+  }
+  .countentWorpSol .divActiveRight .shujuLog{
     font-size: 16px;
     color: #333333;
     margin-bottom: 21px;
@@ -601,21 +712,14 @@ export default {
     float: left;
     margin-top: 32px;
   }
-  .divSoliWrap{
-    display:-webkit-flex;
-    display:flex;
+  .soliSelect .el-form-item{
+    /* border-bottom: 1px solid #dde3ff; */
   }
-  .divSoliWrap .divSoli{
-    float: left;
-    height: 497px;
-    padding: 11px 20px 0 20px;
-    text-align: center;
-    flex-grow: 2;
-    margin-right: 20px;
+  .soliSelect .el-form{
+    width: 100%;
   }
-  .divSoliWrap .divWeather{
-    flex-grow: 1;
-    margin-right: 20px;
+  .soliSelect .el-form-item{
+    float: none;
   }
   .divSoli .soliwd{
     /* border-bottom: 0.018519rem solid #dde3ff; */
@@ -623,54 +727,6 @@ export default {
     margin-top: 4px;
     color: #666666;
     font-size: 16px;
-  }
-  .divWeather .soliwd{
-    /* border-bottom: 0.018519rem solid #dde3ff; */
-    height: 52px;
-    line-height: 52px;
-    text-align: center;
-    font-size: 16px;
-  }
-  .soliStatus{
-    width: 195px;
-    margin: 0 auto;
-  }
-  .soliStatus .wdBox img{
-    position: absolute;
-    bottom: 5px;
-    left: 40px;
-  }
-  .sdStatus img{
-    margin-left: 35px;
-    margin-top: 22px;
-  }
-  .soliStatus p{
-    float: left;
-  }
-  .soliStatus .sbStatus{
-    margin-top: 48px;
-  }
-  .soliStatus .working{
-    margin-top: 22px;
-    color: #333333;
-    font-size: 24px;
-  }
-  .divWeather .divActive{
-    height: 239px;
-    margin-bottom: 30px;
-    padding: 0 20px;
-  }
-  .divSoliWrap .divSoliright{
-    margin-right: 0;
-    flex-grow: 1;
-  }
-  .divSoliproperty{
-    height: 235px;
-    padding: 30px 0 0 20px;
-    margin-bottom: 30px;
-    box-sizing: border-box;
-    display:-webkit-flex;
-    display:flex;
   }
   .propertyList{
     height: 175px;
@@ -724,9 +780,6 @@ export default {
     float: left;
     margin-top: 9px;
   }
-  .divActiveRight .block{
-    float: left;
-  }
   .divActiveRight .el-range-editor.el-input__inner{
     margin-top: 4px;
     padding-top: 0;
@@ -759,66 +812,48 @@ export default {
     margin-left: 50px;
     cursor: pointer;
   }
-  #main,#rainfall,#humidity,#wind{
+  .divActiveRight .block{
+    float: left;
+  }
+  #main{
     width: 100%;
     height: 356px;
   }
   .solit .working{
-    margin-top: 75px
+    margin-top: 80px
   }
-  .winddirection img{
-    /* margin-top: 100px; */
+  .pie{
+    width: 146px;
+    height: 146px;
+    margin: 0 auto;
+    margin-top: 23px;
+    float: left;
   }
-  .weatherw{
-    color: #333;
-    font-size: 26px;
-    margin-top: 60px;
-  }
-  .weatherwtop{
-    color: #333;
-    font-size: 26px;
-    margin-top: 25px;
-  }
-  .winddirection .working{
-    margin-top: 10px;
-  }
-  .temperature{
-    display: flex;
-  }
-  .temperature img{
-    height: 270px;
-    margin-top: 70px;
-  }
-  .temperature div{
-    float: right;
-    flex: 2;
-  }
-  .humidityTag{
+  .soliStatus .wdBox img{
     position: absolute;
-    margin: 80px 62px;
-    font-size: 24px;
-    font-weight: bold;
+    bottom: 5px;
+    left: 40px;
   }
   .soliStatus .wdBox{
     width: 105px;
     height: 170px;
-    background-image: url("../assets/℃11.png");
+    background-image: url("../assets/icon/℃11.png");
     float: left;
     margin-top: 2px;
     margin-right: 11px;
     position: relative;
     cursor: pointer;
   }
-  .countentWorpWea .divActiveRight .divshjuju{
+  .countentWorpSol .divActiveRight .divshjuju{
     position: absolute;
     top: 16px;
     width: 97.5%;
   }
-  .countentWorpWea .el-table{
+  .countentWorpSol .el-table{
     overflow: auto;
     height: 356px;
   }
-  .countentWorpWea .el-table::before{
+  .countentWorpSol .el-table::before{
     height: 0;
   }
   .formTop{

@@ -26,20 +26,20 @@
             <el-tab-pane label="土壤监测" name="first">
               <ul class="tabsSoil">
                 <li v-for="(item3,index) in column" :class = "isactive == index ? 'addclass':''" @click="columnMsg(item3.name,item3.key,index)">
-                  <img src="../assets/iconList.png" alt="">{{item3.name}}
+                  <img src="../assets/icon/iconList.png" alt="">{{item3.name}}
                 </li>
               </ul>
             </el-tab-pane>
             <el-tab-pane label="水阀控制" name="second">
               <ul class="tabsWater">
-                <li><img src="../assets/iconList.png" alt="">A区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">B区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">C区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">D区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">E区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">F区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">G区水阀</li>
-                <li><img src="../assets/iconList.png" alt="">H区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">A区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">B区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">C区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">D区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">E区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">F区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">G区水阀</li>
+                <li><img src="../assets/icon/iconList.png" alt="">H区水阀</li>
               </ul>
             </el-tab-pane>
           </el-tabs>
@@ -186,7 +186,7 @@ export default {
   .divActiveRight .lawn{
     width: 612px;
     height: 240px;
-    background-image: url("../assets/cp.png");
+    background-image: url("../assets/icon/cp.png");
     margin-top: 100px;
     float: left;
     margin-left: 13%;
@@ -194,7 +194,7 @@ export default {
   .lawn .alertPop{
     width: 122px;
     height: 78px;
-    background-image: url("../assets/alert.png");
+    background-image: url("../assets/icon/alert.png");
     padding-top: 23px;
     /* float: left; */
     position: absolute;

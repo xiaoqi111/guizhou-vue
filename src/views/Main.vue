@@ -11,9 +11,9 @@
               </el-select>
           </el-form-item>
         </el-form>
-        <img class="mainPng" src="../assets/main.png" alt="">
+        <img class="mainPng" src="../assets/icon/main.png" alt="">
         <span class="userName">{{userName}}</span>
-        <img @click="logout" class="delPng" src="../assets/del.png" alt="">
+        <img @click="logout" class="delPng" src="../assets/icon/del.png" alt="">
       </div>
     </div>
     <!-- 左侧菜单 -->
@@ -22,7 +22,7 @@
         <!-- nav -->
         <div class="leftNav">
           <div class="headerLogo">
-            <img src="../assets/logo.png" alt="">
+            <img src="../assets/icon/logo.png" alt="">
             <b>科瑞杰云平台</b>
           </div>
         </div>
@@ -36,7 +36,7 @@
             <el-submenu class="treeview active" index="1">
               <template slot="title">
                 <i>
-                  <img class="iconList" src="../assets/icon1.png" alt="">
+                  <img class="iconList" src="../assets/icon/icon1.png" alt="">
                 </i>
                 <span>系统管理</span>
               </template>
@@ -50,7 +50,7 @@
           <router-link to="/Pm">
             <el-menu-item class="treeview" index="2">
               <i>
-                <img class="iconList" src="../assets/icon2.png" alt="">
+                <img class="iconList" src="../assets/icon/icon2.png" alt="">
               </i>
               <span slot="title">项目管理</span>
             </el-menu-item>
@@ -58,7 +58,7 @@
           <router-link to="/User">
             <el-menu-item class="treeview" index="3">
               <i>
-                <img class="iconList" src="../assets/icon3.png" alt="">
+                <img class="iconList" src="../assets/icon/icon3.png" alt="">
               </i>
               <span slot="title">用户管理</span>
             </el-menu-item>
@@ -66,7 +66,7 @@
           <router-link v-show="falg" to="/Jurisdiction">
             <el-menu-item class="treeview" index="4">
               <i>
-                <img class="iconList" src="../assets/icon4.png" alt="">
+                <img class="iconList" src="../assets/icon/icon4.png" alt="">
               </i>
               <span slot="title">权限管理</span>
             </el-menu-item>
@@ -74,7 +74,7 @@
           <router-link to="/Equipment">
             <el-menu-item class="treeview" index="5">
               <i>
-                <img class="iconList" src="../assets/icon5.png" alt="">
+                <img class="iconList" src="../assets/icon/icon5.png" alt="">
               </i>
               <span slot="title">设备管理</span>
             </el-menu-item>
@@ -82,7 +82,7 @@
           <router-link v-show="falg" to="/Log">
             <el-menu-item class="treeview" index="6">
               <i>
-                <img class="iconList" src="../assets/icon6.png" alt="">
+                <img class="iconList" src="../assets/icon/icon6.png" alt="">
               </i>
               <span slot="title">日志查询</span>
             </el-menu-item>
@@ -90,7 +90,7 @@
           <router-link v-show="falg" to="/Passthrough">
             <el-menu-item class="treeview" index="7">
               <i>
-                <img class="iconList" src="../assets/icon6.png" alt="">
+                <img class="iconList" src="../assets/icon/icon6.png" alt="">
               </i>
               <span slot="title">数据透传系统</span>
             </el-menu-item>
@@ -98,7 +98,7 @@
           <router-link v-show="falg2" to="/Facility">
             <el-menu-item class="treeview" index="7">
               <i>
-                <img class="iconList" src="../assets/icon6.png" alt="">
+                <img class="iconList" src="../assets/icon/icon6.png" alt="">
               </i>
               <span slot="title">我的设备</span>
             </el-menu-item>

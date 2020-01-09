@@ -19,7 +19,7 @@
         </el-form-item>
       </el-form>
       <!-- <div class="greenhouseWrap">
-        <img class="greenleftBtn" src="../assets/left.png" alt="">
+        <img class="greenleftBtn" src="../assets/icon/left.png" alt="">
         <div class="greenhouseBox">
           <div class="greenLenth">
             <div class="greenhouseList" v-for="(o,index1) in greenhouseList" :key="index1">
@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        <img class="greenrightBtn" src="../assets/right.png" alt="">
+        <img class="greenrightBtn" src="../assets/icon/right.png" alt="">
       </div> -->
     </div>
     <div class="divSoliWrap">
@@ -47,7 +47,7 @@
           </el-form>
         </p>
         <div class="soliStatus">
-          <img src="../assets/status.png" alt="">
+          <img src="../assets/icon/status.png" alt="">
           <p class="sbStatus">设备状态</p>
           <p class="working">{{working == 1 ?'未连接':'已连接'}}</p>
         </div>
@@ -68,7 +68,7 @@
           相对湿度
         </p>
         <div class="soliStatus">
-          <img src="../assets/shi.png" alt="">
+          <img src="../assets/icon/shi.png" alt="">
           <p class="working">{{soliw}}%RH</p>
         </div>
       </div>
@@ -193,41 +193,41 @@
 import $ from 'jquery'
 import Qs from 'qs'
 
-import wdf20 from '@/assets/-20.png'
-import wdf18 from '@/assets/-18.png'
-import wdf16 from '@/assets/-16.png'
-import wdf14 from '@/assets/-14.png'
-import wdf12 from '@/assets/-12.png'
-import wdf10 from '@/assets/-10.png'
-import wdf8 from '@/assets/-8.png'
-import wdf6 from '@/assets/-6.png'
-import wdf4 from '@/assets/-4.png'
-import wdf2 from '@/assets/-2.png'
+import wdf20 from '@/assets/icon/-20.png'
+import wdf18 from '@/assets/icon/-18.png'
+import wdf16 from '@/assets/icon/-16.png'
+import wdf14 from '@/assets/icon/-14.png'
+import wdf12 from '@/assets/icon/-12.png'
+import wdf10 from '@/assets/icon/-10.png'
+import wdf8 from '@/assets/icon/-8.png'
+import wdf6 from '@/assets/icon/-6.png'
+import wdf4 from '@/assets/icon/-4.png'
+import wdf2 from '@/assets/icon/-2.png'
 
-import wd0 from '@/assets/0.png'
-import wd2 from '@/assets/2.png'
-import wd4 from '@/assets/4.png'
-import wd6 from '@/assets/6.png'
-import wd8 from '@/assets/8.png'
-import wd10 from '@/assets/10.png'
-import wd12 from '@/assets/12.png'
-import wd14 from '@/assets/14.png'
-import wd16 from '@/assets/16.png'
-import wd18 from '@/assets/18.png'
-import wd20 from '@/assets/20.png'
-import wd22 from '@/assets/22.png'
-import wd24 from '@/assets/24.png'
-import wd26 from '@/assets/26.png'
-import wd28 from '@/assets/28.png'
-import wd30 from '@/assets/30.png'
-import wd32 from '@/assets/32.png'
-import wd34 from '@/assets/34.png'
-import wd36 from '@/assets/36.png'
-import wd38 from '@/assets/38.png'
-import wd40 from '@/assets/40.png'
-import wd42 from '@/assets/42.png'
-import wd44 from '@/assets/44.png'
-import wd46 from '@/assets/46.png'
+import wd0 from '@/assets/icon/0.png'
+import wd2 from '@/assets/icon/2.png'
+import wd4 from '@/assets/icon/4.png'
+import wd6 from '@/assets/icon/6.png'
+import wd8 from '@/assets/icon/8.png'
+import wd10 from '@/assets/icon/10.png'
+import wd12 from '@/assets/icon/12.png'
+import wd14 from '@/assets/icon/14.png'
+import wd16 from '@/assets/icon/16.png'
+import wd18 from '@/assets/icon/18.png'
+import wd20 from '@/assets/icon/20.png'
+import wd22 from '@/assets/icon/22.png'
+import wd24 from '@/assets/icon/24.png'
+import wd26 from '@/assets/icon/26.png'
+import wd28 from '@/assets/icon/28.png'
+import wd30 from '@/assets/icon/30.png'
+import wd32 from '@/assets/icon/32.png'
+import wd34 from '@/assets/icon/34.png'
+import wd36 from '@/assets/icon/36.png'
+import wd38 from '@/assets/icon/38.png'
+import wd40 from '@/assets/icon/40.png'
+import wd42 from '@/assets/icon/42.png'
+import wd44 from '@/assets/icon/44.png'
+import wd46 from '@/assets/icon/46.png'
 
 export default {
   data () {
@@ -1053,7 +1053,7 @@ export default {
   .soliStatus .wdBox{
     width: 105px;
     height: 170px;
-    background-image: url("../assets/℃11.png");
+    background-image: url("../assets/icon/℃11.png");
     float: left;
     margin-top: 2px;
     margin-right: 11px;
