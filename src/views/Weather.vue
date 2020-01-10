@@ -58,7 +58,22 @@
           当前风向
         </p>
         <div class="winddirection">
-          <img src="../assets/icon/windAge.png" alt="">
+          <div class="CompassBox">
+            <p class="direction">N</p>
+            <div class="Compass">
+              <p class="direction">W</p>
+              <div class="CompassItem">
+                <img
+                  src="../assets/icon/Pointer.png"
+                  alt=""
+                  class="Pointer"
+                  :style="{transform: `rotate(${windNum*1}deg)`,'transition-duration':`${windNum*0.05}s`}"
+                >
+              </div>
+              <p class="direction">E</p>
+            </div>
+            <p class="direction">S</p>
+          </div>
           <p class="weatherwtop">{{winddirection}}</p>
           <p class="working">风向</p>
           <p class="weatherw">{{windsped}}m/s</p>
@@ -180,6 +195,7 @@ export default {
       formtop:{nodeId:'',nameId:''},
       items:[],
       items2:[],
+      windNum:0,
       items3:[
         {name : "空气温度" , key : "temperature"},
         {name : "空气湿度" , key : "humidity"},
@@ -338,7 +354,8 @@ export default {
     async sysTypeAge (nodeId,id) {
       const res = await this.$http.post(`/data/sysType/${this.sysType}/${id}/${nodeId}`,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
       const data = res.data
-      // console.log(data.data);
+      // console.log("数据集合",data);
+      this.windNum = data.data.first.winddirection;
       this.solit = data.data.first.temperature;
       if (this.solit > 44 && this.solit < 46) {
         this.wdf20 = wd46;
@@ -663,6 +680,7 @@ export default {
   .divSoliWrap .divSoliright{
     margin-right: 0;
     flex-grow: 1;
+    text-align: center;
   }
   .divSoliproperty{
     height: 235px;
@@ -766,13 +784,47 @@ export default {
   .solit .working{
     margin-top: 75px
   }
-  .winddirection img{
-    /* margin-top: 100px; */
+  .winddirection{
+    margin:0 auto;
+    width: 297px;
+    padding-top: 10px;
+    text-align: center;
+    border-top:1px solid rgba(81,111,255,.2);
+  }
+  .CompassBox{
+    padding-bottom: 22px;
+  }
+  .direction{
+    font-size:18px;
+    font-family:Source Han Sans CN;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+  }
+  .Compass{
+    margin: 0 auto;
+    padding-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .CompassItem{
+    width: 144px;
+    height: 144px;
+    background-image: url("../assets/icon/Compass.png");
+    background-size: 144px 144px;
+  }
+  .Pointer{
+    margin-top: 29px;
+    width: 26px;
+    height: 59px;
+    transform: rotate(0deg);
+    transform-origin:50% 70%;
+    /* transition-duration:1s; */
   }
   .weatherw{
     color: #333;
     font-size: 26px;
-    margin-top: 60px;
+    margin-top: 40px;
   }
   .weatherwtop{
     color: #333;
