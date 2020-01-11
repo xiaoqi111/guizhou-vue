@@ -22,7 +22,18 @@
           </p>
           <div class="soliStatus">
             <div class="wdBox">
-              <img :src="wdf20" alt="">
+              <!-- <img :src="wdf20" alt=""> -->
+              <div class="solitBox">
+                <el-progress
+                  :percentage="solit*6"
+                  :show-text="false"
+                  color="linear-gradient(0deg,rgba(66,155,255,1),rgba(176,63,255,1))"
+                  :stroke-width="10"
+                ></el-progress>
+              </div>
+              <div class="slider-bottom">
+                <div class="slider-height"></div>
+              </div>
             </div>
             <p class="working">{{solit}}℃</p>
           </div>
@@ -31,10 +42,18 @@
           <p class="soliSelect soliwd">
             湿度
           </p>
-          <div class="soliStatus sdStatus">
+          <el-progress
+            style="margin:0 auto;color: #000;"
+            class="humidityTag"
+            :stroke-width="parseInt(10)"
+            :width="parseInt(160)"
+            type="circle"
+            :percentage="humidity==0?0:parseInt(humidity)"
+          >&</el-progress>
+          <!-- <div class="soliStatus sdStatus">
             <span class="humidityTag">{{humidity}}%</span>
             <img src="../assets/icon/6ac5d46271219c6ea75f27e49c5d6ae.png" alt="">
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="divActive divSoli">
@@ -67,7 +86,7 @@
                   src="../assets/icon/Pointer.png"
                   alt=""
                   class="Pointer"
-                  :style="{transform: `rotate(${windNum*1}deg)`,'transition-duration':`${windNum*0.05}s`}"
+                  :style="{transform: `rotate(${windNum*1}deg)`,'transition-duration':`1.5s`}"
                 >
               </div>
               <p class="direction">E</p>
@@ -238,7 +257,7 @@ export default {
       // gatewayId:'ed7b9030-dca9-45b1-b6dd-39c86f2da897',
       nodeType:1,
       sysType:1,
-      solit:'',
+      solit:0,
       winddirection:'',
       windsped:'',
       temperature:'',
@@ -676,6 +695,7 @@ export default {
     height: 239px;
     margin-bottom: 30px;
     padding: 0 20px;
+
   }
   .divSoliWrap .divSoliright{
     margin-right: 0;
@@ -781,6 +801,9 @@ export default {
     width: 100%;
     height: 356px;
   }
+  .solit{
+    text-align: center;
+  }
   .solit .working{
     margin-top: 75px
   }
@@ -846,10 +869,41 @@ export default {
     flex: 2;
   }
   .humidityTag{
-    position: absolute;
-    margin: 80px 62px;
+    color: #000;
     font-size: 24px;
     font-weight: bold;
+  }
+  .solitBox{
+    transform:rotate(270deg);
+    width: 120px;
+    height: 30px;
+    position: relative;
+    top: 56px;
+    left: 7px;
+  }
+  .solitBox .el-progress-bar__outer{
+    background-color: rgba(0, 0, 0, 0)!important;
+  }
+  .el-progress /deep/ path:first-child {
+    stroke: #409EFF;
+    stroke-width:1;
+  }
+  .slider-bottom{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #409EFF;
+    margin-left:42px;
+    margin-top:103px;
+    position: relative;
+  }
+  .slider-height{
+    position: relative;
+    top: -6px;
+    left: 10px;
+    background: #409EFF;
+    width: 10px;
+    height: 12px;
   }
   .soliStatus .wdBox{
     width: 105px;
