@@ -58,7 +58,7 @@
         </p>
         <div class="soliStatus">
           <div class="wdBox">
-            <img :src="wdf20" alt="">
+            <img :src='getImgUrlwd(solit)' alt="">
           </div>
           <p class="working">{{solit}}℃</p>
         </div>
@@ -193,42 +193,6 @@
 import $ from 'jquery'
 import Qs from 'qs'
 
-import wdf20 from '@/assets/icon/-20.png'
-import wdf18 from '@/assets/icon/-18.png'
-import wdf16 from '@/assets/icon/-16.png'
-import wdf14 from '@/assets/icon/-14.png'
-import wdf12 from '@/assets/icon/-12.png'
-import wdf10 from '@/assets/icon/-10.png'
-import wdf8 from '@/assets/icon/-8.png'
-import wdf6 from '@/assets/icon/-6.png'
-import wdf4 from '@/assets/icon/-4.png'
-import wdf2 from '@/assets/icon/-2.png'
-
-import wd0 from '@/assets/icon/0.png'
-import wd2 from '@/assets/icon/2.png'
-import wd4 from '@/assets/icon/4.png'
-import wd6 from '@/assets/icon/6.png'
-import wd8 from '@/assets/icon/8.png'
-import wd10 from '@/assets/icon/10.png'
-import wd12 from '@/assets/icon/12.png'
-import wd14 from '@/assets/icon/14.png'
-import wd16 from '@/assets/icon/16.png'
-import wd18 from '@/assets/icon/18.png'
-import wd20 from '@/assets/icon/20.png'
-import wd22 from '@/assets/icon/22.png'
-import wd24 from '@/assets/icon/24.png'
-import wd26 from '@/assets/icon/26.png'
-import wd28 from '@/assets/icon/28.png'
-import wd30 from '@/assets/icon/30.png'
-import wd32 from '@/assets/icon/32.png'
-import wd34 from '@/assets/icon/34.png'
-import wd36 from '@/assets/icon/36.png'
-import wd38 from '@/assets/icon/38.png'
-import wd40 from '@/assets/icon/40.png'
-import wd42 from '@/assets/icon/42.png'
-import wd44 from '@/assets/icon/44.png'
-import wd46 from '@/assets/icon/46.png'
-
 export default {
   data () {
     return {
@@ -309,7 +273,6 @@ export default {
       isactive:'0,0',
       greenisactive:'',
       objNode:'',
-      wdf20:wd0,
       startLength:'',
       dateVals:'',
       tableDataWrap:[],
@@ -454,6 +417,15 @@ export default {
         this.sensorInfo(this.currentPage,this.pageSize,this.formArea.device,this.areaName,this.greenhouseId);
       }
     },
+    getImgUrlwd (solit) {
+      let sol = Math.round(solit);
+      if( sol % 2 == 0 ){
+        return require("@/assets/icon/" + sol + ".png");
+      }else{
+        ++sol;
+        return require("@/assets/icon/" + sol + ".png");
+      }
+    },
     async weatherTable (nodeId,gatewayId) {
       var json = Qs.stringify({
         st: this.st,
@@ -494,75 +466,6 @@ export default {
       if (data.data != null) {
         this.solit = data.data.first.airTemperature;
         this.working = data.data.first.isDamage;
-        if (this.solit >= 44 && this.solit < 46) {
-          this.wdf20 = wd46;
-        } else if (this.solit >= 42 && this.solit < 44) {
-          this.wdf20 = wd44;
-        } else if (this.solit >= 40 && this.solit < 42) {
-          this.wdf20 = wd42;
-        } else if (this.solit >= 38 && this.solit < 40) {
-          this.wdf20 = wd40;
-        } else if (this.solit >= 36 && this.solit < 38) {
-          this.wdf20 = wd38;
-        } else if (this.solit >= 34 && this.solit < 36) {
-          this.wdf20 = wd36;
-        } else if (this.solit >= 32 && this.solit < 34) {
-          this.wdf20 = wd34;
-        } else if (this.solit >= 30 && this.solit < 32) {
-          this.wdf20 = wd32;
-        } else if (this.solit >= 28 && this.solit < 30) {
-          this.wdf20 = wd30;
-        } else if (this.solit >= 26 && this.solit < 28) {
-          this.wdf20 = wd28;
-        } else if (this.solit >= 24 && this.solit < 26) {
-          this.wdf20 = wd26;
-        } else if (this.solit >= 22 && this.solit < 24) {
-          this.wdf20 = wd24;
-        } else if (this.solit >= 20 && this.solit < 22) {
-          this.wdf20 = wd22;
-        } else if (this.solit >= 18 && this.solit < 20) {
-          this.wdf20 = wd20;
-        } else if (this.solit >= 16 && this.solit < 18) {
-          this.wdf20 = wd18;
-        } else if (this.solit >= 14 && this.solit < 16) {
-          this.wdf20 = wd16;
-        } else if (this.solit >= 12 && this.solit < 14) {
-          this.wdf20 = wd14;
-        } else if (this.solit >= 10 && this.solit < 12) {
-          this.wdf20 = wd12;
-        } else if (this.solit >= 8 && this.solit < 10) {
-          this.wdf20 = wd10;
-        } else if (this.solit >= 6 && this.solit < 8) {
-          this.wdf20 = wd8;
-        } else if (this.solit >= 4 && this.solit < 6) {
-          this.wdf20 = wd6;
-        } else if (this.solit >= 2 && this.solit < 4) {
-          this.wdf20 = wd4;
-        } else if (this.solit >= 0 && this.solit < 2) {
-          this.wdf20 = wd2;
-        } else if (this.solit >= -2 && this.solit < 0) {
-          this.wdf20 = wd0;
-        } else if (this.solit >= -4 && this.solit < -2) {
-          this.wdf20 = wdf2;
-        } else if (this.solit >= -6 && this.solit < -4) {
-          this.wdf20 = wdf4;
-        } else if (this.solit >= -8 && this.solit < -6) {
-          this.wdf20 = wdf6;
-        } else if (this.solit >= -10 && this.solit < -8) {
-          this.wdf20 = wdf8;
-        } else if (this.solit >= -12 && this.solit < -10) {
-          this.wdf20 = wdf10;
-        } else if (this.solit >= -14 && this.solit < -12) {
-          this.wdf20 = wdf12;
-        } else if (this.solit >= -16 && this.solit < -14) {
-          this.wdf20 = wdf14;
-        } else if (this.solit >= -18 && this.solit < -16) {
-          this.wdf20 = wdf16;
-        } else if (this.solit >= -20 && this.solit < -18) {
-          this.wdf20 = wdf18;
-        } else if (this.solit >= -22 && this.solit < -20) {
-          this.wdf20 = wdf20;
-        }
 
         this.soliw = data.data.first.airHumidity;
         this.seconde = data.data.seconde;
