@@ -143,4 +143,7 @@ ul,li,ol{
 .countentWorpDev .divActiveActive .el-tabs--top .el-tabs__item.is-top:last-child{
   padding-right: 0.37037rem;
 }
+.el-progress-bar__outer{
+  background-color: transparent;
+}
 </style>
