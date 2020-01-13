@@ -588,7 +588,7 @@ export default {
     font-size: 24px;
   }
   .divWeather .divActive{
-    height: 239px;
+    height: 234px;
     margin-bottom: 30px;
     padding: 0 20px;
 
