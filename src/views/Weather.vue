@@ -22,7 +22,6 @@
           </p>
           <div class="soliStatus">
             <div class="wdBox">
-              <!-- <img :src="wdf20" alt=""> -->
               <div class="solitBox">
                 <el-progress
                   :percentage="solit*6"
@@ -34,7 +33,6 @@
               <div class="slider-bottom">
                 <div class="slider-height"></div>
               </div>
-              <!-- <img :src='getImgUrlwd(solit)'> -->
             </div>
             <p class="working">{{solit}}℃</p>
           </div>
@@ -51,10 +49,6 @@
             type="circle"
             :percentage="humidity==0?0:parseInt(humidity)"
           >&</el-progress>
-          <!-- <div class="soliStatus sdStatus">
-            <span class="humidityTag">{{humidity}}%</span>
-            <img src="../assets/icon/6ac5d46271219c6ea75f27e49c5d6ae.png" alt="">
-          </div> -->
         </div>
       </div>
       <div class="divActive divSoli">
@@ -783,9 +777,7 @@ export default {
     top: 56px;
     left: 7px;
   }
-  .solitBox .el-progress-bar__outer{
-    background-color: rgba(0, 0, 0, 0)!important;
-  }
+
   .el-progress /deep/ path:first-child {
     stroke: #409EFF;
     stroke-width:1;
