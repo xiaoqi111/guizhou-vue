@@ -28,7 +28,7 @@
                   :show-text="false"
                   :style="{'transition':`1.5s`}"
                   color="linear-gradient(0deg,rgba(66,155,255,1),rgba(176,63,255,1))"
-                  :stroke-width="10"
+                  :stroke-width="14"
                 ></el-progress>
               </div>
               <div class="slider-bottom">
@@ -598,7 +598,7 @@ export default {
     font-size: 24px;
   }
   .divWeather .divActive{
-    height: 239px;
+    height: 234px;
     margin-bottom: 30px;
     padding: 0 20px;
   }
@@ -784,7 +784,7 @@ export default {
     height: 30px;
     position: relative;
     top: 56px;
-    left: 7px;
+    left: 5px;
   }
 
   .el-progress /deep/ path:first-child {
@@ -792,12 +792,12 @@ export default {
     stroke-width:1;
   }
   .slider-bottom{
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: #409EFF;
-    margin-left:42px;
-    margin-top:103px;
+    margin-left:40px;
+    margin-top:101px;
     position: relative;
   }
   .slider-height{
@@ -805,7 +805,7 @@ export default {
     top: -6px;
     left: 10px;
     background: #409EFF;
-    width: 10px;
+    width: 14px;
     height: 12px;
   }
   .soliStatus .wdBox{

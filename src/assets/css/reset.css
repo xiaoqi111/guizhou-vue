@@ -128,3 +128,6 @@
 .countentWorpDev .divActiveActive .el-tabs--top .el-tabs__item.is-top:last-child{
   padding-right: 0.37037rem;
 }
+.el-progress-bar__inner{
+  background:linear-gradient(to right,rgba(66,155,255,1),rgba(176,63,255,1));
+}
