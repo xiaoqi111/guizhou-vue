@@ -24,8 +24,9 @@
             <div class="wdBox">
               <div class="solitBox">
                 <el-progress
-                  :percentage="solit*6"
+                  :percentage="solit == 0?0:solitNumber(solit)"
                   :show-text="false"
+                  :style="{'transition':`1.5s`}"
                   color="linear-gradient(0deg,rgba(66,155,255,1),rgba(176,63,255,1))"
                   :stroke-width="10"
                 ></el-progress>
@@ -253,6 +254,24 @@ export default {
     // },
   },
   methods:{
+    // 温度计进度条数值
+    solitNumber(num){
+      let solitNum = 20/60*100;
+      let solit = num/60*100;
+      if(num != 0){
+        if(num>0){
+          solit = solit+solitNum;
+          console.log(solit);
+          return solit;
+        }else{
+          solit = solit+solitNum;
+          console.log(solit);
+          return solit;
+        }
+      }else{
+        return solitNum;
+      }
+    },
     // defaultDate(){
     //     //获取新的时间(2019.4.12）
     //     let date = new Date()
@@ -339,15 +358,6 @@ export default {
       this.humidity = data.data.first.humidity;
       this.rainfall = data.data.first.rainfall;
       this.seconde = data.data.seconde;
-    },
-    getImgUrlwd (solit) {
-      let sol = Math.round(solit);
-      if( sol % 2 == 0 ){
-        return require("@/assets/icon/" + sol + ".png");
-      }else{
-        ++sol;
-        return require("@/assets/icon/" + sol + ".png");
-      }
     },
     async weatherAge (pId,nodeId,column,columnName) {
       var json = Qs.stringify({
@@ -591,7 +601,6 @@ export default {
     height: 239px;
     margin-bottom: 30px;
     padding: 0 20px;
-
   }
   .divSoliWrap .divSoliright{
     margin-right: 0;

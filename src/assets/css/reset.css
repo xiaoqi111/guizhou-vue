@@ -2,6 +2,10 @@
 .solitBox .el-progress-bar__outer{
   background-color: rgba(0, 0, 0, 0)!important;
 }
+/* Weather.vue:日期选择器样式 */
+.block .el-date-editor .el-range-separator{
+  width: auto;
+}
 .el-input__inner{
   height: 31px!important;
   line-height: 31px!important;

@@ -58,7 +58,17 @@
         </p>
         <div class="soliStatus">
           <div class="wdBox">
-            <img :src='getImgUrlwd(solit)' alt="">
+            <div class="solitBox">
+              <el-progress
+                :percentage="solit == 0?0:solitNumber(solit)"
+                :show-text="false"
+                color="linear-gradient(0deg,rgba(66,155,255,1),rgba(176,63,255,1))"
+                :stroke-width="10"
+              ></el-progress>
+            </div>
+            <div class="slider-bottom">
+              <div class="slider-height"></div>
+            </div>
           </div>
           <p class="working">{{solit}}℃</p>
         </div>
@@ -291,7 +301,28 @@ export default {
   mounted: function () {
 
   },
+  computed:{
+
+  },
   methods:{
+    // 温度计进度条数值
+    solitNumber(num){
+      let solitNum = 20/60*100;
+      let solit = num/60*100;
+      if(num != 0){
+        if(num>0){
+          solit = solit+solitNum;
+          console.log(solit);
+          return solit;
+        }else{
+          solit = solit+solitNum;
+          console.log(solit);
+          return solit;
+        }
+      }else{
+        return solitNum;
+      }
+    },
     // defaultDate(){
     //     //获取新的时间(2019.4.12）
     //     let date = new Date()
@@ -415,15 +446,6 @@ export default {
           }
         }
         this.sensorInfo(this.currentPage,this.pageSize,this.formArea.device,this.areaName,this.greenhouseId);
-      }
-    },
-    getImgUrlwd (solit) {
-      let sol = Math.round(solit);
-      if( sol % 2 == 0 ){
-        return require("@/assets/icon/" + sol + ".png");
-      }else{
-        ++sol;
-        return require("@/assets/icon/" + sol + ".png");
       }
     },
     async weatherTable (nodeId,gatewayId) {
@@ -798,6 +820,31 @@ export default {
     margin-top: 22px;
     color: #333333;
     font-size: 24px;
+  }
+  .solitBox{
+    transform:rotate(270deg);
+    width: 120px;
+    height: 30px;
+    position: relative;
+    top: 56px;
+    left: 7px;
+  }
+  .slider-bottom{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #409EFF;
+    margin-left:42px;
+    margin-top:103px;
+    position: relative;
+  }
+  .slider-height{
+    position: relative;
+    top: -6px;
+    left: 10px;
+    background: #409EFF;
+    width: 10px;
+    height: 12px;
   }
   .countentWorpSol .divActiveRight .shujuLog{
     font-size: 16px;
