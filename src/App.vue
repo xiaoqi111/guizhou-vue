@@ -30,4 +30,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.el-progress-bar__outer{
+  background-color: transparent;
+}
 </style>
