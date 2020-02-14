@@ -694,36 +694,7 @@ export default {
       this.area(this.currentPage,this.pageSize,this.formArea.device,this.formArea.area,this.formArea.green);
     },
     change2:function(val,gatewayId){
-      // console.log(gatewayId[0].gatewayId);
-      // console.log(val);
-      // var obj = {}
-      // obj = this.equipForm.find((item)=>{
-      //   return item.gatewayId === val;
-      // });
-      // console.log(obj.nodeId)//label值
-      // console.log(val)//value值
       this.getGreenhouse(val,gatewayId[0].gatewayId);
-    },
-    // async derive () {
-    //   var i = myChart.getDataURL({
-    // 		type:'png',
-    // 		backgroundColor:'white'
-    // 		// 导出的图片分辨率比例，默认为 1。
-    // 		//pixelRatio: number,
-    // 	});
-    // 	$(this).attr("href",i);
-    // 	$(this).attr("download","test.png");
-    // },
-    changedece:function (val,gatewayId) {
-      // let obj = {};
-      // obj = this.equipForm.find((item)=>{
-      //     return item.gatewayId === key;
-      // });
-      // // console.log(obj.nodeId);
-      // // console.log(key);
-      this.objNode = gatewayId[0].gatewayId;
-      this.sysTypeAge(val,gatewayId[0].gatewayId,this.form.gatewayId,this.columnNameIndex);
-      this.weatherTable(this.form.nameId,this.objNode)
     },
     change3:function(key){
       let obj = {};
@@ -731,7 +702,7 @@ export default {
           return item.key === key;
       });
       this.columnNameIndex = obj.name;
-      this.sysTypeAge(this.form.nameId,this.objNode,this.form.gatewayId,this.columnNameIndex);
+      this.sysTypeAge(this.formEquip.device,this.objNode,this.form.gatewayId,this.columnNameIndex);
     },
     formatter(row, column) {
       // console.log(row);

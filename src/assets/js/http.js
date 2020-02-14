@@ -6,14 +6,18 @@ const httpPlugin = {}
 // 为插件对象添加一个成员：install
 // install是一个函数
 // 该函数接收两个参数：vue和options
-const http = axios.create({
-  // 云服务器（本地环境）
-  baseURL: 'http://krj/krjrobot/'
-})
 // const http = axios.create({
-//   // 云服务器（生产环境）
-//   baseURL: 'https://krjrobot.cn/krjrobot/'
+//   // 云服务器（本地环境）
+//   baseURL: 'http://krj/krjrobot/'
 // })
+// const http = axios.create({
+//   // 云服务器（测试环境）
+//   baseURL: 'https://dev.krjrobot.cn/krjrobot/'
+// })
+const http = axios.create({
+  // 云服务器（生产环境）
+  baseURL: 'https://krjrobot.cn/krjrobot/'
+})
 /*
 添加请求拦截器
 拦截器本身就是一个方法
